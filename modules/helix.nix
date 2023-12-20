@@ -15,6 +15,7 @@
         indent-guides.render = true;
         bufferline = "always";
         soft-wrap.enable = true;
+        true-color = true;
       };
     };
   };
