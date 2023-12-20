@@ -2,7 +2,7 @@
 
 {
   home.username = "dane";
-  home.homeDirectory = "/Users/dane";
+  home.homeDirectory = "/home/dane";
 
   home.stateVersion = "23.11";
 
