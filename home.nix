@@ -18,9 +18,11 @@
     p7zip
     podman
     pv
+    python3
     rnix-lsp
     shell_gpt
     trash-cli
+    wget
     wireguard-tools
   ];
 
