@@ -10,20 +10,24 @@
     bash
     cachix
     coreutils-full
-    ffmpeg
     gcc
     glow
+    godot_4
+    killall
     nil
-    ollama
+    obs-studio
     p7zip
     podman
+    fd
     pv
     python3
-    rnix-lsp
     shell_gpt
     trash-cli
+    tree
     wget
     wireguard-tools
+    zip
+    unzip
   ];
 
   programs.bat.enable = true;
@@ -32,7 +36,11 @@
   programs.lf.enable = true;
   programs.mpv.enable = true;
   programs.yt-dlp.enable = true;
-  
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
@@ -42,7 +50,7 @@
 
   programs.eza = {
     enable = true;
-    enableAliases = true;
+    enableFishIntegration = true;
     git = true;
     icons = true;
   };
@@ -52,6 +60,6 @@
     userName = "Dane Rieber";
     userEmail = "danerieber@gmail.com";
   };
-  
+
   programs.home-manager.enable = true;
 }
