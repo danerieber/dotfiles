@@ -55,7 +55,7 @@
         args = [ "--parser" lang.parser ];
       };
       auto-format = true;
-      language-servers = [ "ts" "gpt" ];
+      language-servers = [ "typescript-language-server" "gpt" ];
     }) [
       {
         name = "typescript";
