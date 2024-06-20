@@ -2,16 +2,23 @@
 
 {
   home.packages = with pkgs; [
-    glslls
+    # glslls
     helix-gpt
     nil
     nodePackages.typescript-language-server
+    vscode-langservers-extracted
   ];
 
   programs.helix = {
     enable = true;
+    themes = {
+      dracula_nobg = {
+        inherits = "dracula";
+        "ui.background" = "{}";
+      };
+    };
     settings = {
-      theme = "dracula";
+      theme = "dracula_nobg";
       editor = {
         "line-number" = "relative";
         "cursor-shape" = {
@@ -35,6 +42,31 @@
         args =
           [ "--handler" "ollama" "--ollamaEndpoint" "http://10.0.3.121:11434" ];
       };
+      eslint = {
+        command = "vscode-eslint-language-server";
+        args = [ "--stdio" ];
+        config = {
+          validate = "on";
+          experimental.useFlatConfig = false;
+          rulesCustomizations = [ ];
+          run = "onType";
+          problems.shortenToSingleLine = false;
+          nodePath = "";
+          codeAction = {
+            disableRuleComment = {
+              enable = true;
+              location = "separateLine";
+            };
+            showDocumentation = { enable = true; };
+          };
+          codeActionOnSave = {
+            enable = true;
+            mode = "fixAll";
+          };
+          workingDirectory = { mode = "location"; };
+        };
+      };
+      typescript-language-server.config = { documentFormatting = false; };
     };
     languages.language = [
       {
@@ -48,6 +80,14 @@
         file-types = [ "glsl" "fsh" "vsh" "csh" ];
         language-servers = [ "glslls" ];
       }
+      {
+        name = "svelte";
+        auto-format = true;
+        formatter = {
+          command = "prettier";
+          args = [ "--parser" "svelte" ];
+        };
+      }
     ] ++ (map (lang: {
       name = lang.name;
       formatter = {
@@ -55,7 +95,8 @@
         args = [ "--parser" lang.parser ];
       };
       auto-format = true;
-      language-servers = [ "typescript-language-server" "gpt" ];
+      # language-servers = [ "typescript-language-server" "gpt" ];
+      language-servers = [ "typescript-language-server" "eslint" ];
     }) [
       {
         name = "typescript";

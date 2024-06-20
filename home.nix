@@ -12,10 +12,10 @@
     coreutils-full
     gcc
     glow
-    godot_4
+    # godot_4
     killall
     nil
-    obs-studio
+    # obs-studio
     p7zip
     podman
     fd
@@ -28,6 +28,8 @@
     wireguard-tools
     zip
     unzip
+    websocat
+    ffmpeg-full
   ];
 
   programs.bat.enable = true;
@@ -57,7 +59,7 @@
 
   programs.git = {
     enable = true;
-    userName = "Dane Rieber";
+    userName = "dane";
     userEmail = "danerieber@gmail.com";
   };
 
